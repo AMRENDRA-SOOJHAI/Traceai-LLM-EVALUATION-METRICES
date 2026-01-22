@@ -241,11 +241,3 @@ BERTScore measures **semantic similarity** using **contextual embeddings** from 
 | BERTScore  | Semantic similarity | GenAI evaluation   |
 
 ---
-
-If you want next:
-
-* 🧪 **Add a “Dummy Model vs Real Model” explanation**
-* 📈 **Add sample outputs from your pipeline**
-* 🏗 **Convert this into a research-paper style README**
-
-Just say 👍
