@@ -1,0 +1,16 @@
+[project]
+name = "traceai-llm-evalauation-metrices"
+version = "0.1"
+description = "This project provides all evaluation metrices for LLM."
+authors = [
+    {name = "AMRENDRA SINGH",email = "amrendra.singh@soojhai.in"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
