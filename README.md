@@ -54,7 +54,66 @@ Perplexity is the **exponential of the average negative log-probability** assign
 
 ---
 
-## 🔹 2. BLEU (Bilingual Evaluation Understudy)
+Below is a **clean, README-ready Markdown section**.
+You can **directly copy–paste** this into your `README.md` without any changes.
+
+---
+
+## 🔹 2. Fluency (Derived from Perplexity)
+
+### 📌 What is Fluency?
+
+**Fluency** measures how natural, readable, and grammatically correct a model’s output feels to humans.
+
+In this project, fluency is **automatically derived from perplexity**, mapping a raw perplexity value to an intuitive **0–1 score**.
+
+* **High Fluency (≈ 1.0)** → Text is smooth, natural, and easy to read
+* **Low Fluency (≈ 0.0)** → Text is awkward, broken, or hard to follow
+
+---
+
+### 🔁 Perplexity → Fluency Mapping
+
+Perplexity is **unbounded** and difficult to interpret directly.
+To make model quality easier to compare, we convert perplexity into a **bounded fluency score (0–1)**.
+
+**Intuition:**
+
+* **Very low perplexity (≤ 10)** → Model is very confident → fluency ≈ **1.0**
+* **Moderate perplexity (10–50)** → Reasonable language quality → fluency in the **mid-range**
+* **High perplexity (≥ 100)** → Model is confused → fluency ≈ **0.0**
+
+---
+
+### 🧮 Fluency Formula (Project Definition)
+
+1. Compute **perplexity** for the model outputs
+2. Convert perplexity to fluency using a **logistic function**
+
+[
+\text{Fluency} = \frac{1}{1 + \exp\left(0.1 \cdot (\text{Perplexity} - 30)\right)}
+]
+
+* Centered around **perplexity = 30** (rough “acceptable” quality)
+* Output is compressed into **[0, 1]**
+* **Higher score = more fluent text**
+
+> ⚠️ This transformation is a **design choice specific to this project**, allowing clean comparison of different models using only perplexity.
+
+---
+
+### 📊 Example Interpretation
+
+| Perplexity | Approx. Fluency | Interpretation                    |
+| ---------: | --------------: | --------------------------------- |
+|          5 |          ≈ 0.97 | Extremely fluent, very natural    |
+|         20 |          ≈ 0.73 | Good fluency                      |
+|         40 |          ≈ 0.27 | Noticeable issues in wording      |
+|         80 |          ≈ 0.05 | Highly disfluent / unnatural text |
+
+---
+
+## 🔹 3. BLEU (Bilingual Evaluation Understudy)
 
 ### 📌 What is BLEU?
 
@@ -108,7 +167,7 @@ BLEU = BP \cdot \exp\left(\sum_{n=1}^{N} w_n \log p_n\right)
 
 ---
 
-## 🔹 3. ROUGE (Recall-Oriented Understudy for Gisting Evaluation)
+## 🔹 4. ROUGE (Recall-Oriented Understudy for Gisting Evaluation)
 
 ### 📌 What is ROUGE?
 
@@ -154,7 +213,7 @@ ROUGE\text{-}N = \frac{\text{Matching n-grams}}{\text{Total n-grams in reference
 
 ---
 
-## 🔹 4. BERTScore
+## 🔹 5. BERTScore
 
 ### 📌 What is BERTScore?
 
